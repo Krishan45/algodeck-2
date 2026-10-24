@@ -21,17 +21,6 @@ npm run build      # production build into dist/
 npm run preview    # serve the production build locally
 ```
 
-## Deploy on GitHub Pages
-
-This project includes an automatic GitHub Pages deployment workflow. To publish it:
-
-1. Create a new GitHub repository and upload this project's files (including the hidden `.github` folder).
-2. In the repository, open **Settings → Pages** and choose **GitHub Actions** as the source.
-3. Push to the `main` branch. The **Deploy to GitHub Pages** workflow will test, build, and publish the site.
-4. Once the workflow completes, open the deployment link shown on the workflow page. It will normally be `https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/`.
-
-The workflow automatically configures the correct repository path, so no repository-specific edit is needed before upload. GitHub Pages serves the app over HTTPS. Your practice data remains in each browser's local storage and is not uploaded to GitHub.
-
 ## Features
 
 - **Home selection cards:** Random or Topic, and New or Revise.
