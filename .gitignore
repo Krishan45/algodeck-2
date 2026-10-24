@@ -1,0 +1,13 @@
+# Dependencies and build output
+node_modules/
+dist/
+
+# Local configuration and editor files
+.env
+.env.*
+.DS_Store
+.vscode/
+
+# Test and package-manager diagnostics
+coverage/
+npm-debug.log*
