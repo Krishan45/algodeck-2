@@ -11,7 +11,7 @@
 // >>> To add or remove problems, edit POOL. Delete the browser's localStorage
 // >>> key "algodeck:v1" (or use Menu -> Reset) to re-seed from scratch.
 
-export const PRIORITY_TOPIC = 'Binary Search on Answer'
+//export const PRIORITY_TOPIC = 'Binary Search on Answer'
 
 export const SOLVED_SLUGS = [
   // 'two-sum',
