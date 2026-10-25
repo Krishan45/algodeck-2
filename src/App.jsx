@@ -2,7 +2,7 @@ import { useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import { reducer } from './lib/reducer.js'
 import { loadState, saveState, exportJSON, normalizeState, freshState } from './lib/storage.js'
 import { drawQuestion, lastSolvedMap, computeStats, todaySolved, greeting, quoteOfTheDay, topicIcon } from './lib/logic.js'
-import { buildSeedProblems, PRIORITY_TOPIC } from './data/seed.js'
+import { buildSeedProblems } from './data/seed.js'
 import ProblemCard from './components/ProblemCard.jsx'
 import StatsPanel from './components/StatsPanel.jsx'
 import Ring from './components/Ring.jsx'
@@ -11,6 +11,7 @@ import Confetti from './components/Confetti.jsx'
 import { ChartIcon, FlameIcon, MenuIcon, MoonIcon, SearchIcon, SunIcon } from './components/Icons.jsx'
 
 const DEAL_MS = 750
+const DEFAULT_TOPIC = 'Arrays & Hashing'
 
 function Choice({ legend, options, value, onChange }) {
   return (
@@ -41,7 +42,7 @@ export default function App() {
   const [state, dispatch] = useReducer(reducer, undefined, loadState)
   const [mode, setMode] = useState('random')
   const [kind, setKind] = useState('new')
-  const [topic, setTopic] = useState(PRIORITY_TOPIC)
+  const [topic, setTopic] = useState(DEFAULT_TOPIC)
   const [currentSlug, setCurrentSlug] = useState(null)
   const [emptyMsg, setEmptyMsg] = useState('')
   const [justLogged, setJustLogged] = useState('')
@@ -79,7 +80,7 @@ export default function App() {
       c[p.status]++
     }
     return Object.keys(counts)
-      .sort((a, b) => (a === PRIORITY_TOPIC ? -1 : b === PRIORITY_TOPIC ? 1 : a.localeCompare(b)))
+      .sort((a, b) => a.localeCompare(b))
       .map((t) => ({ topic: t, ...counts[t] }))
   }, [state.problems])
 
@@ -87,7 +88,6 @@ export default function App() {
   const solvedToday = useMemo(() => todaySolved(state.logs), [state.logs])
   const lastSolved = useMemo(() => lastSolvedMap(state.logs), [state.logs])
   const current = currentSlug ? state.problems[currentSlug] : null
-  const priorityLeft = topics.find((t) => t.topic === PRIORITY_TOPIC)?.new ?? 0
   const searchResults = useMemo(() => {
     const query = search.trim().toLowerCase()
     if (!query) return []
@@ -204,12 +204,6 @@ export default function App() {
     setShowMenu(false)
   }
 
-  function focusPriority() {
-    setMode('topic')
-    setTopic(PRIORITY_TOPIC)
-    setKind('new')
-  }
-
   const topicInfo = topics.find((t) => t.topic === topic)
   const deckLabel = `${mode === 'topic' ? topic : 'Random'} · ${kind === 'new' ? 'New' : 'Revise'}`
 
@@ -266,9 +260,6 @@ export default function App() {
             <FlameIcon /> {stats.streak} day streak
           </span>
           <span className="pill" title="Problems solved today">✅ {solvedToday} today</span>
-          <button className="pill pill-btn" onClick={focusPriority} title="Jump to the priority topic">
-            {topicIcon(PRIORITY_TOPIC)} {priorityLeft} {PRIORITY_TOPIC} left
-          </button>
         </div>
 
         {notice && (
@@ -310,7 +301,7 @@ export default function App() {
           value={mode}
           onChange={setMode}
           options={[
-            { value: 'random', icon: '🎲', label: 'Random', hint: `Pick from the full deck'` },
+            { value: 'random', icon: '🎲', label: 'Random', hint: 'Every problem has an equal chance' },
             { value: 'topic', icon: '🗂️', label: 'Topic', hint: 'Stay inside one topic' },
           ]}
         />

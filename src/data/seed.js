@@ -11,7 +11,6 @@
 // >>> To add or remove problems, edit POOL. Delete the browser's localStorage
 // >>> key "algodeck:v1" (or use Menu -> Reset) to re-seed from scratch.
 
-
 export const SOLVED_SLUGS = [
   // 'two-sum',
   // 'koko-eating-bananas',
@@ -19,22 +18,22 @@ export const SOLVED_SLUGS = [
 
 export const POOL = [
   // ---- Binary Search on Answer (16) ----
-  ['koko-eating-bananas', 'Koko Eating Bananas', 'Medium', PRIORITY_TOPIC],
-  ['capacity-to-ship-packages-within-d-days', 'Capacity To Ship Packages Within D Days', 'Medium', PRIORITY_TOPIC],
-  ['split-array-largest-sum', 'Split Array Largest Sum', 'Hard', PRIORITY_TOPIC],
-  ['minimum-number-of-days-to-make-m-bouquets', 'Minimum Number of Days to Make m Bouquets', 'Medium', PRIORITY_TOPIC],
-  ['find-the-smallest-divisor-given-a-threshold', 'Find the Smallest Divisor Given a Threshold', 'Medium', PRIORITY_TOPIC],
-  ['magnetic-force-between-two-balls', 'Magnetic Force Between Two Balls', 'Medium', PRIORITY_TOPIC],
-  ['minimum-speed-to-arrive-on-time', 'Minimum Speed to Arrive on Time', 'Medium', PRIORITY_TOPIC],
-  ['minimized-maximum-of-products-distributed-to-any-store', 'Minimized Maximum of Products Distributed to Any Store', 'Medium', PRIORITY_TOPIC],
-  ['minimum-limit-of-balls-in-a-bag', 'Minimum Limit of Balls in a Bag', 'Medium', PRIORITY_TOPIC],
-  ['minimum-time-to-complete-trips', 'Minimum Time to Complete Trips', 'Medium', PRIORITY_TOPIC],
-  ['maximum-candies-allocated-to-k-children', 'Maximum Candies Allocated to K Children', 'Medium', PRIORITY_TOPIC],
-  ['kth-smallest-number-in-multiplication-table', 'Kth Smallest Number in Multiplication Table', 'Hard', PRIORITY_TOPIC],
-  ['find-k-th-smallest-pair-distance', 'Find K-th Smallest Pair Distance', 'Hard', PRIORITY_TOPIC],
-  ['path-with-minimum-effort', 'Path With Minimum Effort', 'Medium', PRIORITY_TOPIC],
-  ['sqrtx', 'Sqrt(x)', 'Easy', PRIORITY_TOPIC],
-  ['kth-smallest-element-in-a-sorted-matrix', 'Kth Smallest Element in a Sorted Matrix', 'Medium', PRIORITY_TOPIC],
+  ['koko-eating-bananas', 'Koko Eating Bananas', 'Medium', 'Binary Search on Answer'],
+  ['capacity-to-ship-packages-within-d-days', 'Capacity To Ship Packages Within D Days', 'Medium', 'Binary Search on Answer'],
+  ['split-array-largest-sum', 'Split Array Largest Sum', 'Hard', 'Binary Search on Answer'],
+  ['minimum-number-of-days-to-make-m-bouquets', 'Minimum Number of Days to Make m Bouquets', 'Medium', 'Binary Search on Answer'],
+  ['find-the-smallest-divisor-given-a-threshold', 'Find the Smallest Divisor Given a Threshold', 'Medium', 'Binary Search on Answer'],
+  ['magnetic-force-between-two-balls', 'Magnetic Force Between Two Balls', 'Medium', 'Binary Search on Answer'],
+  ['minimum-speed-to-arrive-on-time', 'Minimum Speed to Arrive on Time', 'Medium', 'Binary Search on Answer'],
+  ['minimized-maximum-of-products-distributed-to-any-store', 'Minimized Maximum of Products Distributed to Any Store', 'Medium', 'Binary Search on Answer'],
+  ['minimum-limit-of-balls-in-a-bag', 'Minimum Limit of Balls in a Bag', 'Medium', 'Binary Search on Answer'],
+  ['minimum-time-to-complete-trips', 'Minimum Time to Complete Trips', 'Medium', 'Binary Search on Answer'],
+  ['maximum-candies-allocated-to-k-children', 'Maximum Candies Allocated to K Children', 'Medium', 'Binary Search on Answer'],
+  ['kth-smallest-number-in-multiplication-table', 'Kth Smallest Number in Multiplication Table', 'Hard', 'Binary Search on Answer'],
+  ['find-k-th-smallest-pair-distance', 'Find K-th Smallest Pair Distance', 'Hard', 'Binary Search on Answer'],
+  ['path-with-minimum-effort', 'Path With Minimum Effort', 'Medium', 'Binary Search on Answer'],
+  ['sqrtx', 'Sqrt(x)', 'Easy', 'Binary Search on Answer'],
+  ['kth-smallest-element-in-a-sorted-matrix', 'Kth Smallest Element in a Sorted Matrix', 'Medium', 'Binary Search on Answer'],
 
   // ---- Binary Search (8) ----
   ['binary-search', 'Binary Search', 'Easy', 'Binary Search'],

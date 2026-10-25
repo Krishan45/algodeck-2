@@ -9,7 +9,7 @@ import { reducer } from './lib/reducer.js'
 describe('rendering smoke tests', () => {
   it('renders the homepage with selection cards and draw button', () => {
     const html = renderToString(<App />)
-    for (const text of ['Random', 'Topic', 'New', 'Revise', 'Draw a question', 'Open stats', 'day streak', 'covered', 'Binary Search on Answer']) {
+    for (const text of ['Random', 'Topic', 'New', 'Revise', 'Draw a question', 'Open stats', 'day streak', 'covered', 'Every problem has an equal chance']) {
       expect(html).toContain(text)
     }
   })

@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { computeStats, computeStreak, drawQuestion, dayKey, DAY_MS, activityByDay, todaySolved, greeting, quoteOfTheDay, topicIcon } from './logic.js'
 import { reducer } from './reducer.js'
 import { freshState, normalizeState, exportJSON, loadState, saveState, STORAGE_KEY } from './storage.js'
-import { POOL, PRIORITY_TOPIC } from '../data/seed.js'
+import { POOL } from '../data/seed.js'
 
 const NOW = new Date(2026, 9, 21, 12, 0, 0).getTime()
 const seeded = (rngValue) => () => rngValue
@@ -22,10 +22,9 @@ describe('seed', () => {
       expect(topicIcon(topic)).not.toBe('📌')
     }
   })
-  it('has unique slugs and a priority topic', () => {
+  it('has unique slugs', () => {
     const slugs = POOL.map((r) => r[0])
     expect(new Set(slugs).size).toBe(slugs.length)
-    expect(POOL.some((r) => r[3] === PRIORITY_TOPIC)).toBe(true)
   })
   it('starts every problem as new when SOLVED_SLUGS is empty', () => {
     const s = freshState()
@@ -46,15 +45,10 @@ describe('draw', () => {
       expect(drawQuestion(s, { mode: 'topic', topic: 'Stack', kind: 'new' }).topic).toBe('Stack')
     }
   })
-  it('boosts the priority topic in random mode', () => {
+  it('draws new random problems without topic weighting', () => {
     const s = freshState()
-    let hits = 0
-    const N = 4000
-    for (let i = 0; i < N; i++) {
-      if (drawQuestion(s, { mode: 'random', kind: 'new' }).topic === PRIORITY_TOPIC) hits++
-    }
-    const share = Object.values(s.problems).filter((p) => p.topic === PRIORITY_TOPIC).length / Object.keys(s.problems).length
-    expect(hits / N).toBeGreaterThan(share * 1.5)
+    const picked = drawQuestion(s, { mode: 'random', kind: 'new' }, seeded(0), NOW)
+    expect(picked.slug).toBe(Object.values(s.problems)[0].slug)
   })
   it('does not repeat the last drawn problem back to back', () => {
     const s = { ...freshState(), lastDrawn: 'two-sum' }
@@ -78,7 +72,7 @@ describe('reducer + stats', () => {
     expect(st.attempts).toBe(1)
     expect(st.revisionQueue.map((p) => p.slug)).toEqual(['two-sum'])
     expect(st.topicMastery.find((t) => t.topic === 'Arrays & Hashing').solved).toBe(1)
-    expect(st.topicMastery[0].topic).toBe(PRIORITY_TOPIC)
+    expect(st.topicMastery[0].topic).toBe('Arrays & Hashing')
   })
   it('undo of the only solve returns the problem to new', () => {
     let s = reducer(freshState(), { type: 'log', slug: 'two-sum', result: 'solved', ts: NOW })
@@ -147,7 +141,7 @@ describe('activity + flavour helpers', () => {
   it('greeting, quote and icons always return something', () => {
     for (let h = 0; h < 24; h++) expect(greeting(new Date(2026, 9, 21, h).getTime()).length).toBeGreaterThan(0)
     expect(quoteOfTheDay(NOW).length).toBeGreaterThan(0)
-    expect(topicIcon(PRIORITY_TOPIC)).toBe('🎯')
+    expect(topicIcon('Binary Search on Answer')).toBe('🎯')
     expect(topicIcon('Unknown topic')).toBe('📌')
   })
 })

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { BookmarkIcon, ExternalIcon } from './Icons.jsx'
 import { problemUrl, solutionsUrl, discussUrl, timeAgo, topicIcon } from '../lib/logic.js'
-import { PRIORITY_TOPIC } from '../data/seed.js'
 
 export default function ProblemCard({ problem, bookmarked, lastSolved, onBookmark, onLog, onNext, justLogged }) {
   const [pop, setPop] = useState(0)
@@ -14,7 +13,7 @@ export default function ProblemCard({ problem, bookmarked, lastSolved, onBookmar
           <div>
             <div className="chips">
               <span className={`chip diff-${problem.difficulty.toLowerCase()}`}>{problem.difficulty}</span>
-              <span className={`chip ${problem.topic === PRIORITY_TOPIC ? 'chip-accent' : ''}`}>{problem.topic}</span>
+              <span className="chip">{problem.topic}</span>
               <span className="chip chip-muted">{problem.status === 'revise' ? 'Revise' : 'New'}</span>
             </div>
             <h2>{problem.title}</h2>

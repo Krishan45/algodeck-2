@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import { CloseIcon, FlameIcon } from './Icons.jsx'
 import Ring from './Ring.jsx'
 import { computeStats, activityByDay, problemUrl, timeAgo, topicIcon } from '../lib/logic.js'
-import { PRIORITY_TOPIC } from '../data/seed.js'
 
 function Stat({ label, value, icon }) {
   return (
@@ -73,7 +72,6 @@ export default function StatsPanel({ state, onClose, onUndo, onOpenBookmark }) {
                   <span>
                     <span aria-hidden="true">{topicIcon(t.topic)} </span>
                     {t.topic}
-                    {t.topic === PRIORITY_TOPIC && <span className="chip chip-accent tiny">priority</span>}
                   </span>
                   <span className="muted small">
                     {t.solved}/{t.total}

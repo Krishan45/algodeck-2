@@ -1,4 +1,3 @@
-import { PRIORITY_TOPIC } from '../data/seed.js'
 
 export const DAY_MS = 86400000
 
@@ -64,7 +63,7 @@ export function computeStats(state, now = Date.now()) {
   }
   const topicMastery = Object.values(topics)
     .map((t) => ({ ...t, pct: t.total ? Math.round((t.solved / t.total) * 100) : 0 }))
-    .sort((a, b) => (a.topic === PRIORITY_TOPIC ? -1 : b.topic === PRIORITY_TOPIC ? 1 : b.pct - a.pct || a.topic.localeCompare(b.topic)))
+    .sort((a, b) => b.pct - a.pct || a.topic.localeCompare(b.topic))
 
   return {
     poolSize: all.length,
@@ -81,7 +80,7 @@ export function computeStats(state, now = Date.now()) {
 /**
  * Pick a problem.
  * opts: { mode: 'random' | 'topic', topic?: string, kind: 'new' | 'revise' }
- * Weighted: the priority topic is boosted in random mode; revise favours the
+ * Random draws are equal-probability for new problems; revise favours the
  * problems untouched the longest. Avoids repeating the last drawn problem.
  */
 export function drawQuestion(state, opts, rng = Math.random, now = Date.now()) {
@@ -94,7 +93,6 @@ export function drawQuestion(state, opts, rng = Math.random, now = Date.now()) {
 
   const weights = pool.map((p) => {
     let w = 1
-    if (opts.mode === 'random' && p.topic === PRIORITY_TOPIC) w *= 4
     if (opts.kind === 'revise') {
       const days = last[p.slug] ? (now - last[p.slug]) / DAY_MS : 30
       w += Math.min(days, 60) / 7
