@@ -310,7 +310,7 @@ export default function App() {
           value={mode}
           onChange={setMode}
           options={[
-            { value: 'random', icon: '🎲', label: 'Random', hint: `Leans toward ${PRIORITY_TOPIC}` },
+            { value: 'random', icon: '🎲', label: 'Random', hint: `Pick from the full deck'` },
             { value: 'topic', icon: '🗂️', label: 'Topic', hint: 'Stay inside one topic' },
           ]}
         />
